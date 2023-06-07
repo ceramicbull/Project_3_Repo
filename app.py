@@ -11,7 +11,7 @@ from flask import Flask, jsonify, render_template
 #################################################
 # Database Setup (insert our sqlite file)
 #################################################
-engine = create_engine("sqlite:///data/titanic.sqlite")
+engine = create_engine("sqlite:///ufo.sqlite")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -19,7 +19,7 @@ Base = automap_base()
 Base.prepare(autoload_with=engine)
 
 # Save reference to the table
-
+Ufos = Base.classes.ufo_sightings
 
 #################################################
 # Flask Setup
@@ -38,16 +38,23 @@ def main_page():
     return render_template('index.html')
 
 
-@app.route("/api/v1.0/")
-def passengers_by_class():
+@app.route("/api/v1.0/states")
+def states():
     
     # Open session
     session = Session(engine)
     
-    # Query 
+    # Query all states 
+    results = session.query(Ufos.state).distinct().all()
 
     # close session
     session.close()
+
+      # Convert list of tuples into normal list
+    all_states = list(np.ravel(results))
+
+    return jsonify(all_states)
+
 
 
 if __name__ == '__main__':

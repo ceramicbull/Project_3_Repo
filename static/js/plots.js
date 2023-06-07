@@ -1,3 +1,3 @@
 // Grab data
-let apiUFO = "/api/v1.0/";
+let apiUFO = "/api/v1.0/states";
 
