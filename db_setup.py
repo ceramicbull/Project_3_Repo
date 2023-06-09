@@ -44,21 +44,21 @@ datetime_format_string = '%Y-%m-%d %H:%M:%S'
 
 # commented out to prevent database from being recreated/filled on each run
 # Iterate over each csv file in folder
-# for filename in os.listdir('Data/output_csv/'):
-#     state_csv = os.path.join(folder_path, filename)
-#     # sanity check
-#     # print(state_csv)
-#     with open(state_csv, encoding='utf-8') as file:
-#         csv_reader = csv.reader(file)
-#         # skip header row
-#         next(csv_reader)
-#         for csv_row in csv_reader:
-#             _id, date_time, city, state, shape, duration, summary, link_to_event = csv_row
-#             db_row = UfoSightings(date_time=datetime.strptime(date_time, datetime_format_string), city=city, state=state, shape=shape,
-#                                   duration=duration, summary=summary, link_to_event=link_to_event)
-#             session.add(db_row)
+for filename in os.listdir('Data/output_csv/'):
+    state_csv = os.path.join(folder_path, filename)
+    # sanity check
+    # print(state_csv)
+    with open(state_csv, encoding='utf-8') as file:
+        csv_reader = csv.reader(file)
+        # skip header row
+        next(csv_reader)
+        for csv_row in csv_reader:
+            _id, date_time, city, state, shape, duration, summary, link_to_event = csv_row
+            db_row = UfoSightings(date_time=datetime.strptime(date_time, datetime_format_string), city=city, state=state, shape=shape,
+                                  duration=duration, summary=summary, link_to_event=link_to_event)
+            session.add(db_row)
 
-# session.commit()
+session.commit()
 # test query on database
 test = session.query(UfoSightings).filter(UfoSightings.city == 'Phoenix').all()
 for result in test:
