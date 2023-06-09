@@ -9,7 +9,7 @@ from flask import Flask, jsonify, render_template
 
 
 #################################################
-# Database Setup 
+# Database Setup
 #################################################
 engine = create_engine("sqlite:///ufo.sqlite")
 
@@ -30,6 +30,7 @@ app = Flask(__name__)
 # Flask Routes
 #################################################
 
+
 @app.route("/")
 def main_page():
     """
@@ -40,21 +41,53 @@ def main_page():
 
 @app.route("/api/v1.0/states")
 def states():
-    
+
     # Open session
     session = Session(engine)
-    
-    # Query all states 
+
+    # Query all states
     results = session.query(Ufos.city).distinct().all()
 
     # close session
     session.close()
 
-      # Convert list of tuples into normal list
+    # Convert list of tuples into normal list
     all_states = list(np.ravel(results))
 
     return jsonify(all_states)
 
+
+@app.route("/api/v1.0/shapes")
+def shapes():
+
+    # Open session
+    session = Session(engine)
+
+    # Query unique shapes
+    query_results = session.query(
+        Ufos.state, Ufos.shape).all()
+
+    state_shapes_frequency = {}
+
+    for result in query_results:
+        state = result[0]
+        shape = result[1].lower() if result[1] != "" else "unreported"
+
+        if state in state_shapes_frequency:
+            if shape in state_shapes_frequency[state]:
+                state_shapes_frequency[state][shape] += 1
+            else:
+                state_shapes_frequency[state][shape] = 1
+        else:
+            state_shapes_frequency[state] = {}
+
+    # close session
+    session.close()
+
+    # Convert list of tuples into normal list
+    #shape_results = list(np.ravel(results))
+
+    return jsonify(state_shapes_frequency)
 
 
 if __name__ == '__main__':
