@@ -56,29 +56,34 @@ def states():
 
     return jsonify(all_states)
 
-@app.route("/api/v1.0/plot/<state>")
-def plot(state):
+@app.route("/api/v1.0/plot")
+def plot():
     
     # Open session
     session = Session(engine)
     
     # Query all states and dates
-    results = session.query(Ufos.state, Ufos.date_time).filter(Ufos.state == state).\
-    filter(func.date(Ufos.date_time) < (2014, 1, 1)).all()
+    state_query = session.query(Ufos.state, Ufos.date_time).all()
 
     # close session
     session.close()
 
-    # Convert into dictionary
-    if results:
-        all_dates = []
-        for i in results:
-            date_dict = {}
-            date_dict['state'] = i.state
-            date_dict['Timestamp'] = i.str(i.date_time)
-            all_dates.append(date_dict)
+    # Create count per state per year
+    state_dates_frequency = {}
+
+    for result in state_query:
+        state = result[0]
+        dates = result[1].year
+
+        if state in state_dates_frequency:
+            if dates in state_dates_frequency[state]:
+                state_dates_frequency[state][dates] += 1
+            else:
+                state_dates_frequency[state][dates] = 1
+        else:
+            state_dates_frequency[state] = {}
     
-    return jsonify(all_dates)
+    return jsonify(state_dates_frequency)
 
 if __name__ == '__main__':
     app.run(debug=False)

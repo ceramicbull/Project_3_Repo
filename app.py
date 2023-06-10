@@ -55,7 +55,66 @@ def states():
 
     return jsonify(all_states)
 
+@app.route("/api/v1.0/plot")
+def plot():
+    
+    # Open session
+    session = Session(engine)
+    
+    # Query all states and dates
+    state_query = session.query(Ufos.state, Ufos.date_time).all()
 
+    # close session
+    session.close()
+
+    # Create count per state per year
+    state_dates_frequency = {}
+
+    for result in state_query:
+        state = result[0]
+        dates = result[1].year
+
+        if state in state_dates_frequency:
+            if dates in state_dates_frequency[state]:
+                state_dates_frequency[state][dates] += 1
+            else:
+                state_dates_frequency[state][dates] = 1
+        else:
+            state_dates_frequency[state] = {}
+    
+    return jsonify(state_dates_frequency)
+
+@app.route("/api/v1.0/shapes")
+def shapes():
+
+    # Open session
+    session = Session(engine)
+
+    # Query unique shapes
+    query_results = session.query(
+        Ufos.state, Ufos.shape).all()
+
+    state_shapes_frequency = {}
+
+    for result in query_results:
+        state = result[0]
+        shape = result[1].lower() if result[1] != "" else "unreported"
+
+        if state in state_shapes_frequency:
+            if shape in state_shapes_frequency[state]:
+                state_shapes_frequency[state][shape] += 1
+            else:
+                state_shapes_frequency[state][shape] = 1
+        else:
+            state_shapes_frequency[state] = {}
+
+    # close session
+    session.close()
+
+    # Convert list of tuples into normal list
+    #shape_results = list(np.ravel(results))
+
+    return jsonify(state_shapes_frequency)
 
 if __name__ == '__main__':
     app.run(debug=False)
