@@ -2,7 +2,7 @@
 const shapesApi = "/api/v1.0/shapes";
 
 d3.json(shapesApi).then(function (data) {
-    d3.selectAll("#selDataset").on("change", createHistogram);
+    //d3.selectAll("#selDataset").on("change", createHistogram);
 
     createHistogram();
 
@@ -31,14 +31,12 @@ d3.json(shapesApi).then(function (data) {
             }
         };
         Plotly.newPlot("shapePlot", [barChartValues], barChartLayout);
-    }
-})
-
+ 
 // Grab data for line plot
 const url = "/api/v1.0/plot";
 
 d3.json(url).then(function (data) {
-    d3.selectAll("#selDataset").on("change", createLineGraph);
+    d3.selectAll("#selDataset").on("change", createHistogram, createLineGraph);
 
     createLineGraph();
 
@@ -63,8 +61,11 @@ d3.json(url).then(function (data) {
         let lineLayout = {
             title: "UFO Sightings per State"
         };
-        Plotly.newPlot("linePlot", [lineValues], lineLayout);
+       Plotly.newPlot("linePlot", [lineValues], lineLayout);
+
+            
     }
 })
 
-
+    } 
+})
