@@ -18,8 +18,9 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(autoload_with=engine)
 
-# Save reference to the table
+# Save references to the tables
 Ufos = Base.classes.ufo_sightings
+geo = Base.classes.state_geo
 
 #################################################
 # Flask Setup
@@ -83,6 +84,21 @@ def plot():
             state_dates_frequency[state] = {}
     
     return jsonify(state_dates_frequency)
+
+@app.route("/api/v1.0/map_info")
+def map_info():
+     # Open session
+    session = Session(engine)
+
+    #queries
+    state_info=session.query(geo.state,geo.population,geo.geometry).all()
+    ufo_info=session.query(Ufos.state).count()
+
+    #result dictionary
+    geoJson={"type":"FeatureCollection"}
+    for 
+    
+
 
 @app.route("/api/v1.0/shapes")
 def shapes():
