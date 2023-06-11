@@ -1,9 +1,7 @@
-import os
 import csv
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from datetime import datetime
 
 
 # Define the SQLite database file path
@@ -20,7 +18,7 @@ Base = declarative_base()
 
 class StateGeo(Base):
     __tablename__ = 'state_geo'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     state = Column(String)
     population = Column(Integer)
     geometry = Column(String)

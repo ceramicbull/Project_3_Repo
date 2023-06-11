@@ -4,6 +4,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import pandas as pd
+from us_state_abbrev import abbrev_to_us_state as un_abbrev
 
 from flask import Flask, jsonify, render_template
 
@@ -92,11 +93,47 @@ def map_info():
 
     #queries
     state_info=session.query(geo.state,geo.population,geo.geometry).all()
-    ufo_info=session.query(Ufos.state).count()
+    
 
-    #result dictionary
-    geoJson={"type":"FeatureCollection"}
-    for 
+    #geoJson dictionary
+    #inital setup
+    geoJson={"type":"FeatureCollection",
+             "features":[]}
+    #loop through states
+    for i in range(len(state_info)):
+        #unravel tuples
+        info=list(np.ravel(state_info[i]))
+        #ignore Puerto Rico (sorry)
+        if info[0] != "PR":
+            #count sightings in the state of this paricular row
+            sightings=session.query(Ufos).filter(Ufos.state==info[0]).count()
+            #(almost) blank dictionary for the feature
+            feature_dict={"type":"Feature",
+                            "properties":{}}
+            #iterate id number
+            feature_dict["id"]=i+1
+            #target the properties sub-dictionary for simpler code
+            properties=feature_dict["properties"]
+            #get the name
+            properties["name"]=info[0]
+            #get the proper name of the state
+            properties["proper_name"]=un_abbrev[info[0]]
+            #get population
+            properties["population"]=info[1]
+            #get raw number of sightings
+            properties["sightings"]=session.query(Ufos).filter(Ufos.state==info[0]).count()
+            #calculate per-capita sightings
+            properties["per_capita"]=sightings/int(info[1])
+            #pull out the geometry info
+            properties["geometry"]=eval(info[2])
+            #add the properties of the feature to the geoJson
+            geoJson["features"].append(feature_dict)
+    
+    
+    # close session
+    session.close()
+
+    return jsonify(geoJson)
     
 
 
