@@ -61,11 +61,9 @@ d3.json(url).then(function (data) {
         let lineLayout = {
             title: "UFO Sightings per State"
         };
-       Plotly.newPlot("linePlot", [lineValues], lineLayout);
-
-            
+ 
+        Plotly.newPlot("linePlot", [lineValues], lineLayout);
     }
 })
-
-    } 
+    }
 })
