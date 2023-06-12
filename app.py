@@ -123,7 +123,7 @@ def map_info():
             #get raw number of sightings
             properties["sightings"]=session.query(Ufos).filter(Ufos.state==info[0]).count()
             #calculate per-capita sightings
-            properties["per_capita"]=sightings/int(info[1])
+            properties["per_capita"]=(sightings/int(info[1]))*100000
             #pull out the geometry info
             properties["geometry"]=eval(info[2])
             #add the properties of the feature to the geoJson

@@ -6,31 +6,31 @@ const map = L.map('map').setView([37.8, -96], 4);
 	}).addTo(map);
 
 	// control that shows state info on hover
-	const info = L.control();
+	//const info = L.control();
 
-	info.onAdd = function (map) {
-		this._div = L.DomUtil.create('div', 'info');
-		this.update();
-		return this._div;
-	};
+	//info.onAdd = function (map) {
+		//this._div = L.DomUtil.create('div', 'info');
+		//this.update();
+		//return this._div;
+	//};
 
-	info.update = function (props) {
-		const contents = props ? `<b>${props.name}</b><br />${props.density} people / mi<sup>2</sup>` : 'Hover over a state';
-		this._div.innerHTML = `<h4>US Population Density</h4>${contents}`;
-	};
+	//info.update = function (props) {
+		//const contents = props ? `<b>${props.name}</b><br />${props.density} people / mi<sup>2</sup>` : 'Hover over a state';
+		//this._div.innerHTML = `<h4>US Population Density</h4>${contents}`;
+	//};
 
 	info.addTo(map);
 
 
-	// get color depending on population density value
-	function getColor(d) {
-		return d > 1000 ? '#800026' :
-			d > 500  ? '#BD0026' :
-			d > 200  ? '#E31A1C' :
-			d > 100  ? '#FC4E2A' :
-			d > 50   ? '#FD8D3C' :
-			d > 20   ? '#FEB24C' :
-			d > 10   ? '#FED976' : '#FFEDA0';
+	// get color depending on sightings value
+	function getColorSight(d) {
+		return d > 2000 ? '#005a32' :
+			d > 1400  ? '#238b45' :
+			d > 1150  ? '#41ab5d' :
+			d > 1000  ? '#74c476' :
+			d > 750  ? '#a1d99b' :
+			d > 500   ? '#c7e9c0' :
+			d > 250  ? '#e5f5e0' : '#f7fcf5';
 	}
 
 	function style(feature) {
@@ -40,9 +40,21 @@ const map = L.map('map').setView([37.8, -96], 4);
 			color: 'white',
 			dashArray: '3',
 			fillOpacity: 0.7,
-			fillColor: getColor(feature.properties.density)
+			fillColor: getColorSight(feature.properties.sightings)
 		};
 	}
+
+	// get color depending on sighting/capita value
+	function getColorPerCap(d) {
+		return d > 40 ? '#005a32' :
+			d > 35  ? '#238b45' :
+			d > 30  ? '#41ab5d' :
+			d > 25  ? '#74c476' :
+			d > 20  ? '#a1d99b' :
+			d > 15   ? '#c7e9c0' :
+			d > 10  ? '#e5f5e0' : '#f7fcf5';
+	}
+
 
 	function highlightFeature(e) {
 		const layer = e.target;
@@ -90,7 +102,7 @@ const map = L.map('map').setView([37.8, -96], 4);
 	legend.onAdd = function (map) {
 
 		const div = L.DomUtil.create('div', 'info legend');
-		const grades = [0, 10, 20, 50, 100, 200, 500, 1000];
+		const grades = [0, 250, 500, 750, 1000, 1250, 1500, 2000];
 		const labels = [];
 		let from, to;
 
