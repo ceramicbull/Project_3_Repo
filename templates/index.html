@@ -8,69 +8,100 @@
     <title>A Decade of UFO Sightings in the United States</title>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
 <body>
-    <h1>A Decade of UFO Sightings in the United States</h1>
-    <p>Use the interactive charts below to explore UFO activity by state</p>
-    <select id="selDataset">
-        <option value="AL">AL</option>
-        <option value="AK">AK</option>
-        <option value="AZ">AZ</option>
-        <option value="AR">AR</option>
-        <option value="CA">CA</option>
-        <option value="CO">CO</option>
-        <option value="CT">CT</option>
-        <option value="DC">DC</option>
-        <option value="DE">DE</option>
-        <option value="FL">FL</option>
-        <option value="GA">GA</option>
-        <option value="HI">HI</option>
-        <option value="ID">ID</option>
-        <option value="IL">IL</option>
-        <option value="IN">IN</option>
-        <option value="IA">IA</option>
-        <option value="KS">KS</option>
-        <option value="KY">KY</option>
-        <option value="LA">LA</option>
-        <option value="ME">ME</option>
-        <option value="MD">MD</option>
-        <option value="MA">MA</option>
-        <option value="MI">MI</option>
-        <option value="MN">MN</option>
-        <option value="MS">MS</option>
-        <option value="MO">MO</option>
-        <option value="MT">MT</option>
-        <option value="NE">NE</option>
-        <option value="NV">NV</option>
-        <option value="NH">NH</option>
-        <option value="NJ">NJ</option>
-        <option value="NM">NM</option>
-        <option value="NY">NY</option>
-        <option value="NC">NC</option>
-        <option value="ND">ND</option>
-        <option value="OH">OH</option>
-        <option value="OK">OK</option>
-        <option value="OR">OR</option>
-        <option value="PA">PA</option>
-        <option value="RI">RI</option>
-        <option value="SC">SC</option>
-        <option value="SD">SD</option>
-        <option value="TN">TN</option>
-        <option value="TX">TX</option>
-        <option value="UT">UT</option>
-        <option value="VT">VT</option>
-        <option value="VA">VA</option>
-        <option value="WA">WA</option>
-        <option value="WV">WV</option>
-        <option value="WI">WI</option>
-        <option value="WY">WY</option>
-    </select>
 
+    <div class="block">
+        <section class="hero is-small is-primary">
+            <div class="hero-body">
+                <p class="title">
+                    A Decade of UFO Sightings in the United States
+                </p>
+                <p class="subtitle">
+                    Use the interactive charts below to explore UFO activity by state
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div class="block">
+        <div class="container">
+            <strong>Select which state you would like to view:</strong>
+            <select class="select is-primary is-rounded" id="selDataset"> 
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AZ">AZ</option>
+                <option value="AR">AR</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DC">DC</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="IA">IA</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="ME">ME</option>
+                <option value="MD">MD</option>
+                <option value="MA">MA</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MS">MS</option>
+                <option value="MO">MO</option>
+                <option value="MT">MT</option>
+                <option value="NE">NE</option>
+                <option value="NV">NV</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NY">NY</option>
+                <option value="NC">NC</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WV">WV</option>
+                <option value="WI">WI</option>
+                <option value="WY">WY</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-full">
+            <div class="container">
+                <p>placeholder for the chloropleth map</p>
+            </div>
+        </div>
+    </div>
     
-    <div id="shapePlot"></div>
-    <div id="linePlot"></div>
+    <div class="columns">
+        <div class="column is-half">
+            <div id="shapePlot"></div>
+        </div>
+        <div class="column is-half">
+            <div id="linePlot"></div>
+        </div>
+    </div>
     
 
     <script src="static/js/plots.js"></script>
