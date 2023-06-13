@@ -15,6 +15,14 @@
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>    
+
+    
+    
     <style>
 		html, body {
 			height: 100%;
@@ -34,82 +42,18 @@
 
 <body>
 
-    <div class="block">
-        <section class="hero is-small is-primary">
-            <div class="hero-body">
-                <p class="title">
-                    A Decade of UFO Sightings in the United States
-                </p>
-                <p class="subtitle">
-                    Use the interactive charts below to explore UFO activity by state
-                </p>
-            </div>
-        </section>
-    </div>
+    <div class="block" id="header"></div>
 
-    <div class="block">
-        <div class="container">
-            <strong>Select which state you would like to view:</strong>
-            <select class="select is-primary is-rounded" id="selDataset"> 
-                <option value="AL">AL</option>
-                <option value="AK">AK</option>
-                <option value="AZ">AZ</option>
-                <option value="AR">AR</option>
-                <option value="CA">CA</option>
-                <option value="CO">CO</option>
-                <option value="CT">CT</option>
-                <option value="DC">DC</option>
-                <option value="DE">DE</option>
-                <option value="FL">FL</option>
-                <option value="GA">GA</option>
-                <option value="HI">HI</option>
-                <option value="ID">ID</option>
-                <option value="IL">IL</option>
-                <option value="IN">IN</option>
-                <option value="IA">IA</option>
-                <option value="KS">KS</option>
-                <option value="KY">KY</option>
-                <option value="LA">LA</option>
-                <option value="ME">ME</option>
-                <option value="MD">MD</option>
-                <option value="MA">MA</option>
-                <option value="MI">MI</option>
-                <option value="MN">MN</option>
-                <option value="MS">MS</option>
-                <option value="MO">MO</option>
-                <option value="MT">MT</option>
-                <option value="NE">NE</option>
-                <option value="NV">NV</option>
-                <option value="NH">NH</option>
-                <option value="NJ">NJ</option>
-                <option value="NM">NM</option>
-                <option value="NY">NY</option>
-                <option value="NC">NC</option>
-                <option value="ND">ND</option>
-                <option value="OH">OH</option>
-                <option value="OK">OK</option>
-                <option value="OR">OR</option>
-                <option value="PA">PA</option>
-                <option value="RI">RI</option>
-                <option value="SC">SC</option>
-                <option value="SD">SD</option>
-                <option value="TN">TN</option>
-                <option value="TX">TX</option>
-                <option value="UT">UT</option>
-                <option value="VT">VT</option>
-                <option value="VA">VA</option>
-                <option value="WA">WA</option>
-                <option value="WV">WV</option>
-                <option value="WI">WI</option>
-                <option value="WY">WY</option>
-            </select>
-        </div>
-    </div>
-
+    <div class="block" id="map_title"></div>
+    
     <div id="map" class="columns">
     </div>
     
     <script type="text/javascript" src="static/js/bcplots.js"></script>
+
+    <div class="block" id="graph_title"></div>
+
+    <div class="block" id="dropdown"></div>
 
     <div class="columns">
         <div class="column is-half">
@@ -122,8 +66,151 @@
     
 
     <script src="static/js/plots.js"></script>
-    <!-- <script src="static/js/cpplots.js"></script> -->
-    <!-- <script src="static/js/LSRplots.js"></script> -->
+
+
+    <script type="text/babel">
+      function Header() {
+        return (
+            <>
+            <div class="block">
+                <section class="hero is-small is-primary">
+                    <div class="hero-body">
+                        <p class="title">
+                            A Decade of UFO Sightings in the United States
+                        </p>
+                        <p class="subtitle">
+                            Use the interactive charts below to explore UFO activity by state
+                        </p>
+                    </div>
+                </section>
+            </div>
+            </>
+            );
+      }
+
+      const container = document.getElementById('header');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Header />)
+    </script>
+
+    <script type="text/babel">
+        function MapTitle() {
+        return (
+            <>
+            
+            <div class="container">
+                <p class="title">
+                    An overview of sightings within the U.S.
+                </p>
+            </div>
+                    
+            </>
+            );
+        }
+
+        const map_title_container = document.getElementById('map_title');
+        const map_title_root = ReactDOM.createRoot(map_title_container);
+        map_title_root.render(<MapTitle />)
+    </script>
+
+    <script type="text/babel">
+        function GraphTitle() {
+        return (
+            <>
+            
+            <div class="hero is-info is-small">
+                <div class="hero-body">
+                    <p class="title">
+                        More data by state
+                    </p>
+                </div>
+            </div>
+                    
+            </>
+            );
+        }
+
+        const graph_title_container = document.getElementById('graph_title');
+        const graph_title_root = ReactDOM.createRoot(graph_title_container);
+        graph_title_root.render(<GraphTitle />)
+    </script>
+
+    <script type="text/babel">
+        function Dropdown() {
+            return (
+                <>
+                <div class="block">
+                    <div class="container">
+                        
+                        <strong>Select which state you would like to view:      </strong>
+                        
+                        <select class="select is-primary is-rounded" id="selDataset"> 
+                            <option value="AL">AL</option>
+                            <option value="AK">AK</option>
+                            <option value="AZ">AZ</option>
+                            <option value="AR">AR</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="CT">CT</option>
+                            <option value="DC">DC</option>
+                            <option value="DE">DE</option>
+                            <option value="FL">FL</option>
+                            <option value="GA">GA</option>
+                            <option value="HI">HI</option>
+                            <option value="ID">ID</option>
+                            <option value="IL">IL</option>
+                            <option value="IN">IN</option>
+                            <option value="IA">IA</option>
+                            <option value="KS">KS</option>
+                            <option value="KY">KY</option>
+                            <option value="LA">LA</option>
+                            <option value="ME">ME</option>
+                            <option value="MD">MD</option>
+                            <option value="MA">MA</option>
+                            <option value="MI">MI</option>
+                            <option value="MN">MN</option>
+                            <option value="MS">MS</option>
+                            <option value="MO">MO</option>
+                            <option value="MT">MT</option>
+                            <option value="NE">NE</option>
+                            <option value="NV">NV</option>
+                            <option value="NH">NH</option>
+                            <option value="NJ">NJ</option>
+                            <option value="NM">NM</option>
+                            <option value="NY">NY</option>
+                            <option value="NC">NC</option>
+                            <option value="ND">ND</option>
+                            <option value="OH">OH</option>
+                            <option value="OK">OK</option>
+                            <option value="OR">OR</option>
+                            <option value="PA">PA</option>
+                            <option value="RI">RI</option>
+                            <option value="SC">SC</option>
+                            <option value="SD">SD</option>
+                            <option value="TN">TN</option>
+                            <option value="TX">TX</option>
+                            <option value="UT">UT</option>
+                            <option value="VT">VT</option>
+                            <option value="VA">VA</option>
+                            <option value="WA">WA</option>
+                            <option value="WV">WV</option>
+                            <option value="WI">WI</option>
+                            <option value="WY">WY</option>
+                        </select>
+                        
+                    </div>
+                </div>                
+                </>
+                );
+            }
+
+    const dropdown_container = document.getElementById('dropdown');
+    const dropdown_root = ReactDOM.createRoot(dropdown_container);
+    dropdown_root.render(<Dropdown />)
+  </script>
+
+    
+
 
 </body>
 
