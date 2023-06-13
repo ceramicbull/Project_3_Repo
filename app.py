@@ -125,7 +125,7 @@ def map_info():
             #calculate per-capita sightings
             properties["per_capita"]=(sightings/int(info[1]))*100000
             #pull out the geometry info
-            properties["geometry"]=eval(info[2])
+            feature_dict["geometry"]=eval(info[2])
             #add the properties of the feature to the geoJson
             geoJson["features"].append(feature_dict)
     
