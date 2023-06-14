@@ -25,13 +25,13 @@ const map2 = L.map('map2').setView([37.8, -96], 4);
 
 	// get color depending on sighting/capita value
 	function getColorPerCap(d) {
-		return d > 40 ? '#005a32' :
-			d > 35  ? '#238b45' :
-			d > 30  ? '#41ab5d' :
-			d > 25  ? '#74c476' :
-			d > 20  ? '#a1d99b' :
-			d > 15   ? '#c7e9c0' :
-			d > 10  ? '#e5f5e0' : '#f7fcf5';
+		return d > 40 ? '#4a1486' :
+			d > 35  ? '#6a51a3' :
+			d > 30  ? '#807dba' :
+			d > 25  ? '#9e9ac8' :
+			d > 20  ? '#bcbddc' :
+			d > 15   ? '#dadaeb' :
+			d > 10  ? '#efedf5' : '#fcfbfd';
 	}
 
 	
@@ -96,7 +96,8 @@ const map2 = L.map('map2').setView([37.8, -96], 4);
 			});
 		}
 
-		map2.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+		map2.attributionControl.addAttribution('Population data: &copy; <a href="http://census.gov/">US Census Bureau</a>');
+		map2.attributionControl.addAttribution('UFO Reports: &copy; <a href="https://nuforc.org/">National UFO Reporting Center</a>');
 
 
 		const legend2 = L.control({position: 'bottomright'});

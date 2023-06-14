@@ -108,7 +108,8 @@ const map = L.map('map').setView([37.8, -96], 4);
 			});
 		}
 
-		map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+		map.attributionControl.addAttribution('Population data: &copy; <a href="http://census.gov/">US Census Bureau</a>');
+		map.attributionControl.addAttribution('UFO Reports: &copy; <a href="https://nuforc.org/">National UFO Reporting Center</a>');
 
 
 		const legend = L.control({position: 'bottomright'});
