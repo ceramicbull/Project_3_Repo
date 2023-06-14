@@ -10,19 +10,15 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <!--Plotly Library-->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
     <!-- React -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>    
 
-    
-    
     <style>
 		html, body {
 			height: 100%;
@@ -47,7 +43,7 @@
     <div class="block" id="map_title"></div>
     
     <div id="map" class="leaflet-container">
-    
+
     </div>
     <script type="text/javascript" src="static/js/bcplots.js"></script>
     <br>
@@ -103,10 +99,12 @@
         return (
             <>
             
-            <div class="container">
-                <p class="title">
-                    An overview of sightings within the U.S.
-                </p>
+            <div class="hero is-info is-small">
+                <div class="hero-body">
+                    <p class="subtitle">
+                        <center>Use these interactive graphs to explore the number of UFO sightings per state. The first map highlights the number of sightings and can then be compared to the second map that adjusts for per-capita.</center>
+                    </p>
+                </div>
             </div>
                     
             </>
@@ -125,8 +123,8 @@
             
             <div class="hero is-info is-small">
                 <div class="hero-body">
-                    <p class="title">
-                        More data by state
+                    <p class="subtitle">
+                        <center>Use these interactive graphs to explore the number of UFO shapes per state and the number of sightings over the last decade.</center>
                     </p>
                 </div>
             </div>
@@ -147,7 +145,7 @@
                 <div class="block">
                     <div class="container">
                         
-                        <strong>Select which state you would like to view:      </strong>
+                        <strong>Select which state you would like to explore:      </strong>
                         
                         <select class="select is-primary is-rounded" id="selDataset"> 
                             <option value="AL">AL</option>
@@ -215,7 +213,12 @@
   </script>
 
     
-
+<div>
+<img src="https://media.tenor.com/cCADMf95jDsAAAAC/alien-dance.gif"
+                            height="100px"
+                            width="100px"/>
+                            </body>
+                        </div>
 
 </body>
 
