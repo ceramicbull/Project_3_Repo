@@ -136,7 +136,6 @@ def map_info():
     return jsonify(geoJson)
     
 
-
 @app.route("/api/v1.0/shapes")
 def shapes():
 

@@ -2,7 +2,7 @@
 const shapesApi = "/api/v1.0/shapes";
 
 d3.json(shapesApi).then(function (data) {
-    //d3.selectAll("#selDataset").on("change", createHistogram);
+    
 
     createHistogram();
 
