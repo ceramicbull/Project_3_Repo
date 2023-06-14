@@ -42,7 +42,6 @@ folder_path = 'Data/output_csv/'
 # format date time string
 datetime_format_string = '%Y-%m-%d %H:%M:%S'
 
-# commented out to prevent database from being recreated/filled on each run
 # Iterate over each csv file in folder
 for filename in os.listdir('Data/output_csv/'):
     state_csv = os.path.join(folder_path, filename)
