@@ -16,7 +16,7 @@ The Python Flask API was set up in the [app.py file](https://github.com/ceramicb
 The webpage layout and styling can be reviewed in the [index.html](https://github.com/ceramicbull/Project_3_Repo/blob/main/templates/index.html) file. The styling was augmented with the React JavaScript library.
 
 ## Interactive Maps & Plots
-Two [Leaflet chloropleth maps](https://github.com/ceramicbull/Project_3_Repo/blob/main/static/js/plots.js) were created along with two [Plotly graphs](https://github.com/ceramicbull/Project_3_Repo/blob/main/static/js/plots.js) to visualize the data set. 
+Two [Leaflet choropleth maps](https://github.com/ceramicbull/Project_3_Repo/blob/main/static/js/plots.js) were created along with two [Plotly graphs](https://github.com/ceramicbull/Project_3_Repo/blob/main/static/js/plots.js) to visualize the data set. 
 
 ## Conclusion
 This project required a comprehensive skillset of data analytics and web development to create an interactive webpage that allows any user to quickly and easily analyze data. Main takeaways from the interactive data show: 
@@ -40,7 +40,7 @@ This project required a comprehensive skillset of data analytics and web develop
 
 ## Index
 [HTML/CSS/JavaScript/React](https://github.com/ceramicbull/Project_3_Repo/blob/main/templates/index.html)  
-[Leaflet & Plotly charts](https://github.com/ceramicbull/Project_3_Repo/blob/main/static/js/plots.js)  
+[Leaflet maps & Plotly charts](https://github.com/ceramicbull/Project_3_Repo/blob/main/static/js/plots.js)  
 [Python Flask API](https://github.com/ceramicbull/Project_3_Repo/blob/main/app.py)  
 [SQLite Database](https://github.com/ceramicbull/Project_3_Repo/blob/main/db_setup.py)  
 [Web scraping](https://github.com/ceramicbull/Project_3_Repo/blob/main/Data/webscrape.ipynb)
