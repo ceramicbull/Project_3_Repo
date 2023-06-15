@@ -29,7 +29,8 @@ This project required a comprehensive skillset of data analytics and web develop
 [National UFO Reporting Center](https://nuforc.org/)  
 [National UFO Reporting Center Online Database](https://nuforc.org/databank/)  
 [United States of America Python Dictionary](https://gist.github.com/rogerallen/1583593)  
-[Population Estimates API](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html)  
+[Population Estimates API](https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html) 
+[Leaflet Choropleth Example](https://leafletjs.com/examples/choropleth/)
 [Slide Deck](https://docs.google.com/presentation/d/1HZREObr04ZEqqgNdZNPVDqCBwjlN3rXxUnYY-yO7xj4/edit#slide=id.p1)
 
 ## Contributors
