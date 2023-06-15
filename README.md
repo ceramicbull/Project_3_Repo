@@ -39,7 +39,7 @@ This project required a comprehensive skillset of data analytics and web develop
 [Leigha Russel](https://github.com/lrussell834)
 
 ## Index
-[HTML/CSS/JavaScript/Bulma](https://github.com/ceramicbull/Project_3_Repo/blob/main/templates/index.html)  
+[HTML/CSS/JavaScript/React](https://github.com/ceramicbull/Project_3_Repo/blob/main/templates/index.html)  
 [Leaflet & Plotly charts](https://github.com/ceramicbull/Project_3_Repo/blob/main/static/js/plots.js)  
 [Python Flask API](https://github.com/ceramicbull/Project_3_Repo/blob/main/app.py)  
 [SQLite Database](https://github.com/ceramicbull/Project_3_Repo/blob/main/db_setup.py)  
